@@ -1,11 +1,2 @@
-use reqwest;
-use serde::Deserialize;
-
-#[derive(Deserialize,Debug )]
-
-struct mempoolData {
-    count: u64,
-    vsize: u64,
-    total_fee: u64,
-}
-
+mod mempool;
+use mempool::fetch_mempool_data;
