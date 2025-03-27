@@ -3,15 +3,15 @@ use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 
-struct mempoolData {
-    count: u64,
-    vsize: u64,
-    total_fee: u64,
+pub struct MempoolData {
+    pub count: u64,
+    pub vsize: u64,
+    pub total_fee: u64,
 }
 
-pub async fn fetch_mempool_data() -> Result<mempoolData, reqwest::Error> {
-    let url = "https://mempool.space/api/v1/mempool/summary";
-    let response = reqwest::get(url).await?.json::mempoolData>().await?;
+pub async fn fetch_mempool_data() -> Result<MempoolData, reqwest::Error> {
+    let url = "https://mempool.space/api/mempool";
+    let response = reqwest::get(url).await?.json::<MempoolData>().await?;
     Ok(response)
 
 }
